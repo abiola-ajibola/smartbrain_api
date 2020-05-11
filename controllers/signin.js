@@ -2,7 +2,7 @@ const handleSignin = (request, response, knex, bcrypt, validatePW, validateEm) =
     const { email, password } = request.body;
     console.log('Email', email, validateEm(email));
     console.log('Password', password, validatePW(password));
-    if ((validateEm(email) && validatePW(password)) || validateEm(email) == undefined || validatePW(password) == undefined) {
+    if (!(validateEm(email) && validatePW(password)) || validateEm(email) == undefined || validatePW(password) == undefined) {
         console.log('mail', validateEm(email))
         console.log('pw', validatePW(password))
         return response.status(400).json('Not allowed')
