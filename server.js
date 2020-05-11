@@ -19,11 +19,13 @@ const image = require('./controllers/image');
 const validatePW = (pw) => {
     return (/[0-9]/.test(pw) && /[A-Z]/.test(pw) && /[a-z]/.test(pw) && /\W/.test(pw))
 };
+
 const validateEm = (mail) => {
     if (mail.match(/@/g)) {
         return (!(mail.match(/@/g).length > 1) && /\./.test(mail))
     }
 };
+
 const validateName = (nm) => {
     return (!(/[\W0-9]/.test(nm)) && /[a-zA-Z]/.test(nm))
 };
