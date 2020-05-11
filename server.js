@@ -44,5 +44,5 @@ app.put('/image', (req, res) => {image.handleImage(req, res, knex)});
 app.post('/imgApi', (req, res) => {image.handleAPICall(req,res)})
 
 app.listen(process.env.PORT, () => {
-    console.log('API server listening on port:4000');
+    console.log(`API server listening on port: ${process.env.PORT}`);
 });

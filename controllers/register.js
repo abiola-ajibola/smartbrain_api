@@ -31,7 +31,10 @@ const handleRegister = (req, res, knex, bcrypt, validateName, validatePW, valida
                         .then(trx.commit)
                         .catch(trx.rollback);
                 })
-                    .catch(() => res.status(400).json('Unable to register'))
+                    .catch((e) => {
+                        res.status(400).json('Unable to register')
+                        console.log(e);
+                    })
             });
         });
     }
