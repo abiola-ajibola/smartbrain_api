@@ -16,10 +16,11 @@ const handleSignin = (request, response, knex, bcrypt, validatePW, validateEm) =
                     if (res) {
                         return knex('users').where('email', email)
                             .then(user => {
-                                // console.log(user[0])
+                                console.log(user[0])
+                                console.log('found')
                                 response.json(Object.assign({}, user[0], { comment: "good request" }))
                             })
-                            .catch((e) => console.error('inside bcrypt e:', e))
+                            .catch((e) => console.error('user not found', e))
                     } else {
                         response.status(400).json('Passed1: Incorrect credentials')
                     }
