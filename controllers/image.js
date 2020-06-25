@@ -1,7 +1,7 @@
 const Clarifai = require('clarifai');
 
 const app = new Clarifai.App({
-    apiKey: 'f78712ca6c684e0a998b98a1eb7054c9'
+    apiKey: process.env.API_KEY
 });
 
 const handleAPICall = (req, res) => {
@@ -13,7 +13,7 @@ const handleAPICall = (req, res) => {
 
 const handleImage = (req, res, knex) => {
     const { id, imgUrl, numberOfFaces } = req.body
-    console.log('Faces present: ', numberOfFaces);
+    console.log(`Faces present:  ${numberOfFaces} \nImage url : ${imgUrl}`);
     knex('users')
         .returning('*')
         .where('id', '=', id)
