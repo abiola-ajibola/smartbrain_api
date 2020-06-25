@@ -12,11 +12,12 @@ const handleAPICall = (req, res) => {
 }
 
 const handleImage = (req, res, knex) => {
-    const { id, imgUrl } = req.body
+    const { id, imgUrl, numberOfFaces } = req.body
+    console.log('Faces present: ', numberOfFaces);
     knex('users')
         .returning('*')
         .where('id', '=', id)
-        .increment('pictures', 1)
+        .increment('pictures', numberOfFaces)
         .then(response => {
             res.json(response)
         })

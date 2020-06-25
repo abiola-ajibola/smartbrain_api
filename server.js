@@ -46,3 +46,5 @@ app.post('/imgApi', (req, res) => {image.handleAPICall(req,res)})
 app.listen(process.env.PORT, () => {
     console.log(`API server listening on port: ${process.env.PORT}`);
 });
+
+// app.listen(4020, () => console.log('Port: 4020'));
