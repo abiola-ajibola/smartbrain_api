@@ -9,6 +9,7 @@ const knex = require('knex')({
     }
 });
 
+
 const signin = require('./controllers/signin');
 const register = require('./controllers/register');
 const profile = require('./controllers/profile');
