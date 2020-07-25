@@ -2,7 +2,7 @@ const fetch = require('node-fetch');
 
 const handleSignin = (request, response, knex, bcrypt, validatePW, validateEm) => {
     const { email, password, recaptcha } = request.body;
-    let success;
+    let success = false;
     console.log('Email', email, validateEm(email));
     console.log('Password', password, validatePW(password));
     console.log(recaptcha);
