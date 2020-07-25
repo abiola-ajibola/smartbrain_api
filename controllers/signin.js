@@ -1,7 +1,20 @@
+const fetch = require('node-fetch');
+
 const handleSignin = (request, response, knex, bcrypt, validatePW, validateEm) => {
-    const { email, password } = request.body;
+    const { email, password, recaptcha } = request.body;
     console.log('Email', email, validateEm(email));
     console.log('Password', password, validatePW(password));
+    console.log(recaptcha);
+
+    ///////////////////////////////
+    fetch(`https://www.google.com/recaptcha/api/siteverify?6LdjSrIZAAAAAGbAFZOMiL_vZMoasCCBvJoN_HIq&response=${recaptcha}`,{
+        method: 'POST'
+    })
+    .then(res => res.json())
+    .then(resObj => console.log(resObj))
+    .catch(console.log)
+    ////////////////////////////
+
     if ((validateEm(email) && validatePW(password))) {
         console.log('mail', validateEm(email))
         console.log('pw', validatePW(password))
