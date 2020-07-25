@@ -2,6 +2,7 @@ const fetch = require('node-fetch');
 
 const handleSignin = (request, response, knex, bcrypt, validatePW, validateEm) => {
     const { email, password, recaptcha } = request.body;
+    let success;
     console.log('Email', email, validateEm(email));
     console.log('Password', password, validatePW(password));
     console.log(recaptcha);
@@ -11,7 +12,10 @@ const handleSignin = (request, response, knex, bcrypt, validatePW, validateEm) =
         method: 'POST'
     })
     .then(res => res.json())
-    .then(resObj => console.log(resObj))
+    .then(resObj => {
+        console.log(resObj)
+        success = resObj.success;
+    })
     .catch(console.log)
     ////////////////////////////
 
@@ -19,6 +23,8 @@ const handleSignin = (request, response, knex, bcrypt, validatePW, validateEm) =
         console.log('mail', validateEm(email))
         console.log('pw', validatePW(password))
         return response.status(400).json('Not allowed')
+    }else if (!success) {
+        response.status(400).json('Error input');
     } else {
         knex('login').where({
             email: email
