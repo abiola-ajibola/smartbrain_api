@@ -7,7 +7,7 @@ const handleSignin = (request, response, knex, bcrypt, validatePW, validateEm) =
     console.log(recaptcha);
 
     ///////////////////////////////
-    fetch(`https://www.google.com/recaptcha/api/siteverify?6LdjSrIZAAAAAGbAFZOMiL_vZMoasCCBvJoN_HIq&response=${recaptcha}`,{
+    fetch(`https://www.google.com/recaptcha/api/siteverify?secret=6LdjSrIZAAAAAGbAFZOMiL_vZMoasCCBvJoN_HIq&response=${recaptcha}`,{
         method: 'POST'
     })
     .then(res => res.json())
